@@ -1,0 +1,31 @@
+<div class="container">
+<button type="button" class="btn btn-primary" routerLink="/products/new">New Product</button>
+
+<br>
+<br>
+<input type="text" #filter placeholder="Search...." class="form-control" (keyup)="search(filter.value)">
+<br>
+
+<table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead class='thead-dark'>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Category</th>
+      <th scope="col">Edit</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <!-- <tr *ngFor="let product of getProducts$ |async"> -->
+          <tr *ngFor="let product of getProducts" >
+
+      <td>{{product.payload.val().title}}</td><!--we use payload beacuse we use snapshot-->
+      <td>{{product.payload.val().price|currency:"USD":true}}</td>
+      <td>{{product.payload.val().category}}</td>
+      <td><a [routerLink]="['/products/new/',product.key]">Edit</a></td>
+
+    </tr>
+    
+  </tbody>
+</table></div>
