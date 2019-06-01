@@ -3,7 +3,6 @@
 
 <br>
 <br>
-<input type="text" #filter placeholder="Search...." class="form-control" (keyup)="search(filter.value)">
 <br>
 
 <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
@@ -21,7 +20,7 @@
           <tr *ngFor="let product of getProducts" >
 
       <td>{{product.payload.val().title}}</td><!--we use payload beacuse we use snapshot-->
-      <td>{{product.payload.val().price|currency:"USD":true}}</td>
+      <td>{{product.payload.val().price|currency:"USD"}}</td>
       <td>{{product.payload.val().category}}</td>
       <td><a [routerLink]="['/products/new/',product.key]">Edit</a></td>
 

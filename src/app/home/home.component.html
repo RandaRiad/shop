@@ -1,22 +1,29 @@
+
+
+
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-    
-      <div class="card"  style="width: 18rem;">
-          <h4 class="card-text btn btn-primary"  >Categories</h4>
+    <div class="col-3">
 
-          <div class="card-body">
+      <div class="card" style="width: 18rem;">
+        <h4 class="card-text btn btn-primary">Categories</h4>
 
-            <h4 class="card-text " (click)="getAllProductByButtonCategory()">All Products</h4>
-          </div>
-        </div>
-      <div class="card" *ngFor="let category of allCategory$|async" style="width: 18rem;">
         <div class="card-body">
-          <h4 class="card-text" (click)="filterProductbyCategory(category.name)">{{category.name}}</h4>
+
+          <h4 class="card-text " (click)="getAllProductByButtonCategory()">All Products</h4>
         </div>
       </div>
+      <div class="card" *ngFor="let category of allCategory$|async" style="width: 18rem;">
+          <div class="card-body">
+            <h4 class="card-text" (click)="filterProductbyCategory(category.name)">{{category.name}}</h4>
+          </div>
+        </div>
     </div>
-    <div class="col-md-6" *ngFor="let product of productsByCategory">
+  <div class="col-1"></div>
+  <div class="col">
+  <div class="row">
+    <ng-container  *ngFor="let product of productsByCategory ; let i = index">
+    
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" [src]="product.payload.val().imageUrl" *ngIf="product.payload.val().imageUrl">
         <div class="card-body">
@@ -24,21 +31,32 @@
           <h4 class="card-text">{{product.payload.val().category}}</h4>
 
           <h5 class="card-text">{{product.payload.val().price|currency:"USD":true}}</h5>
-<button (click)='addCard(product)' class="btn btn-primary"> add to Card</button>
+
         </div>
+        <div class="card-footer">
+          <button *ngIf="getQauntaty(product)===0; else updateQauntaty" (click)='addCardAndQauantaty(product)'
+            class="btn btn-primary btn-block">Add to Cart</button>
+        </div>
+        <ng-template #updateQauntaty>
+          <div class="row no-gutters">
+            <div class="col-2">
+              <button (click)='decreaseQauntaty(product)' class="btn btn-primary btn-block"> -</button>
+            </div>
+            <div class="col text-center ">
+              <h6>{{getQauntaty(product)}} in Cart</h6>
+            </div>
+            <div class="col-2">
+              <button (click)='addCardAndQauantaty(product)' class="btn btn-primary btn-block"> +</button>
+            </div>
+          </div>
+
+        </ng-template>
+
       </div>
-    </div>
-    <!-- <div class="col-md-6" *ngFor="let product of productsByCategory$|async">
-        <div class="card"   style="width: 18rem;">
-               <img class="card-img-top" [src]="product.payload.val().imageUrl" *ngIf="product.imageUrl" >
-               <div class="card-body">
-                 <h3 class="card-title" >{{product.payload.val().title}} </h3>
-                 <h4 class="card-text">{{product.payload.val().category}}</h4>
-       
-                 <h5 class="card-text">{{product.payload.val().price|currency:"USD":true}}</h5>
-         
-               </div>
-             </div>
-    </div> -->
+    <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+  </ng-container>
   </div>
+</div>
+ </div>
+
 </div>

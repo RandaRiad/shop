@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { OrdersComponent } from './orders/orders.component';
-import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { ProductsComponent } from './products/products.component';
 import { LoginComponent } from './login/login.component';
 import {AngularFireModule} from '@angular/fire';
@@ -18,11 +16,11 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { AuthService } from './service/auth/auth.service';
 import { AuthGuardService } from './service/authGaurd/auth-guard.service';
-import { AdminAuthGaurdService } from './service/admin/admin-auth-gaurd.service';
-import { AdminProductsComponent } from './admin-products/admin-products.component';
 import { ProductNewComponent } from './product-new/product-new.component';
 import { CategoryService } from './service/product/category.service';
 import {CustomFormsModule} from "ng2-validation";
+import { ShoppingcardService } from './service/card/shoppingcard.service';
+import { ShoppingComponent } from './shopping/shopping.component';
 
 
 @NgModule({
@@ -30,12 +28,11 @@ import {CustomFormsModule} from "ng2-validation";
     AppComponent,
     HomeComponent,
     NavBarComponent,
-    OrdersComponent,
-    AdminOrdersComponent,
+    
     ProductsComponent,
     LoginComponent,
-    AdminProductsComponent,
-    ProductNewComponent
+    ProductNewComponent,
+    ShoppingComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +46,8 @@ import {CustomFormsModule} from "ng2-validation";
     CustomFormsModule,
     DataTablesModule
   ],
-  providers: [AuthService,AuthGuardService,UserDatabaseService,AdminAuthGaurdService,CategoryService],
+  providers: [AuthService,AuthGuardService,UserDatabaseService
+    ,CategoryService,ShoppingcardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

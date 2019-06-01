@@ -16,6 +16,10 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
   }
+  pand = true;
+  toggletrue() {
+    this.pand = !this.pand;
+  }
 
   logOut() {
     this.service.logOut();
