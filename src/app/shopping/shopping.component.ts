@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ShoppingcardService } from '../service/card/shoppingcard.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'app-shopping',
   templateUrl: './shopping.component.html',
@@ -32,30 +33,53 @@ export class ShoppingComponent implements OnInit, OnDestroy  {
 
   cart:any[]=[];      //contain all products that in card
   async ngOnInit() {
-    this.subscribe1 = (await this.card.getAllProductsInCard()).valueChanges().subscribe(cart => {
+   (await this.card.getAllProductsInCard()).snapshotChanges().pipe(take(1)).subscribe(cart => {
       this.cart = cart;
 
     })     //return all product in the card in database
   }
 
-
-  productPrice;
+  delete(item) {
+    if (confirm("Are you sure to Delete this Product")) {
+      this.card.deleteProduct(item);
+    }}
   totalProductsPrice=0 ;
 
-  totalPrice() {
+   totalPrice() {
+     if(this.totalProductsPrice==0){
     for (let items of this.cart as any) {
-      let qauantaty = items.quantity;
-      let price = items.product.price as number;
-      this.productPrice = qauantaty * price;
-     this.totalProductsPrice+=this.productPrice;
+     
+        let qauantaty = items.payload.val().quantity;
+        console.log(qauantaty)
+
+        let price = items.payload.val().product.price as number;
+        console.log(price)
+
+        let productPrice = qauantaty * price;
+        console.log(productPrice)
+
+       this.totalProductsPrice+=productPrice;
+       console.log(this.totalProductsPrice)
+      
     }
     
-    return this.totalProductsPrice;
-    
+      return this.totalProductsPrice;
+  }
+  else{
+    return this.totalProductsPrice=0;
 
-   }
+    
+  }
+    
+    
+  
+    }
+   
  
+
+ 
+   
   ngOnDestroy(): void {
-    this.subscribe1.unsubscribe();
+    // this.subscribe1.unsubscribe();
   }
 }

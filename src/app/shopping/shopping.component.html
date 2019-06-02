@@ -14,11 +14,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of cart">
-        <td>  {{item.product.title}} </td>
-        <td>{{item.quantity}}</td>
-        <td>{{item.product.price|currency:"USD"}}</td>
-        <td  >  {{item.product.price*item.quantity |currency:"USD"}}
+        <td>  {{item.payload.val().product.title}} </td>
+        <td>{{item.payload.val().quantity}}</td>
+        <td>{{item.payload.val().product.price|currency:"USD"}}</td>
+        <td  >  {{item.payload.val().product.price*item.payload.val().quantity |currency:"USD"}}
           </td>
+          <td><button class="btn btn-danger" (click)="delete(item)">Delete</button></td>
       </tr>
       <tr>
         <td></td>
@@ -33,7 +34,7 @@
       </tr>
     </tbody>
   </table>
-  
+
  
 <br>
   <div class="row">

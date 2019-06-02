@@ -62,9 +62,8 @@ export class ShoppingcardService {
   
      item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
 
-          if((item.payload.val().quantity)=0){
-            this.db.object('/shopping-card/' + this.cardid + '/items/' + product.key).remove();
-            
+          if((item.payload.val().quantity)=== -1){
+           this. deleteProduct (item)  ;         
                }else{
             item$.update({
               quantity: (item.payload.val().quantity) -1
@@ -83,5 +82,12 @@ async getCardProduct(){ //return  card
   async getAllProductsInCard(){
     let cardid=await this.getOrCreateCard();
     return this.db.list('/shopping-card/'+cardid+'/items');
+  }
+
+  async deleteProduct(item){ 
+    let cardid = await this.getOrCreateCard();
+
+    return this.db.object('/shopping-card/' + cardid + '/items/' + item.key).remove();
+
   }
 }

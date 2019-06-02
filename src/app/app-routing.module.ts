@@ -10,7 +10,8 @@ import { ShoppingComponent } from './shopping/shopping.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
-  
+  {path:'',component:HomeComponent},
+
   {path:'products/new',component:ProductNewComponent,canActivate:[AuthGuardService]},
   {path:'products/new/:id',component:ProductNewComponent,canActivate:[AuthGuardService]},
 

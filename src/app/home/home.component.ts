@@ -6,7 +6,7 @@ import { ShoppingcardService } from '../service/card/shoppingcard.service';
 
 
 @Component({
-  selector: 'app-home',
+  selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -51,9 +51,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
    ;
   getQauntaty(product) {// reuturn qauntati of card item
-    if (!this.cart) {
+    if (!this.cart || this.cart==null ) {
        return 0 
       }
+
+      
       else{
           let item = this.cart.items[product.key];
             return item ? item.quantity : 0
