@@ -15,6 +15,16 @@ export class ShoppingComponent implements OnInit, OnDestroy  {
   subscribe1: Subscription;
   form: FormGroup;
   constructor(private card: ShoppingcardService) {
+    
+   }
+
+  cart:any[]=[];      //contain all products that in card
+  async ngOnInit() {
+   (await this.card.getAllProductsInCard()).snapshotChanges().pipe(take(1)).subscribe(cart => {
+      this.cart = cart;
+
+    })     //return all product in the card in database
+
     this.form = new FormGroup({
       title: new FormControl("", Validators.required),
       last: new FormControl("", Validators.required),
@@ -29,14 +39,6 @@ export class ShoppingComponent implements OnInit, OnDestroy  {
       email: new FormControl("", Validators.required),
       cvv: new FormControl("", Validators.required),
     });
-   }
-
-  cart:any[]=[];      //contain all products that in card
-  async ngOnInit() {
-   (await this.card.getAllProductsInCard()).snapshotChanges().pipe(take(1)).subscribe(cart => {
-      this.cart = cart;
-
-    })     //return all product in the card in database
   }
 
   delete(item) {
