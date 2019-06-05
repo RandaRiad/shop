@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { NewproductService } from '../service/newproduct/newproduct.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'app-product-new',
   templateUrl: './product-new.component.html',
@@ -12,8 +13,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProductNewComponent implements OnInit {
 
   categoryProduct$;
-  productById;
-  productID: string;
+  productById:{}
+ 
+  productID;
 
   constructor(private categ: CategoryService,
     private newProduct: NewproductService,
@@ -24,22 +26,26 @@ export class ProductNewComponent implements OnInit {
 
     this.productID = this.activeRoute.snapshot.paramMap.get('id')//to ruturn product key in database from url when user click edit from products.component.html
     if (this.productID) {
-      this.newProduct.getProductById(this.productID).subscribe(productID => this.productById = productID);// take rturn product and put it in variable 
+      this.categoryProduct$ = categ.getProductCategory();
+
+      this.newProduct.getProductById(this.productID).pipe(take(1)).subscribe(productID =>{
+        if(productID){
+          this.productById = productID
+
+        }
+      } );// take rturn product and put it in variable 
 
 
     }
+    
 
   }
 
   form  : FormGroup ;
-  title:FormControl;
-  price:FormControl;
-  imageUrl:FormControl;
-  category:FormControl;
   ngOnInit() {
     
     this.form = new FormGroup({
-    //  title: new FormControl("", Validators.required),
+     title: new FormControl("", Validators.required),
       price: new FormControl("", [CustomValidators.min(0), Validators.required]),
 
       imageUrl: new FormControl("", [CustomValidators.url, Validators.required]),

@@ -33,7 +33,7 @@ export class ShoppingComponent implements OnInit, OnDestroy  {
 
   cart:any[]=[];      //contain all products that in card
   async ngOnInit() {
-   (await this.card.getAllProductsInCard()).snapshotChanges().pipe(take(1)).subscribe(cart => {
+   (await this.card.getAllProductsInCard()).snapshotChanges().subscribe(cart => {
       this.cart = cart;
 
     })     //return all product in the card in database
