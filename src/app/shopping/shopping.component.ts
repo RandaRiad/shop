@@ -42,8 +42,9 @@ export class ShoppingComponent implements OnInit, OnDestroy  {
   delete(item) {
     if (confirm("Are you sure to Delete this Product")) {
       this.card.deleteProduct(item);
-    }}
-  totalProductsPrice : number=0 ;
+    }};
+
+  totalProductsPrice=0 ;
 
    totalPrice() {
      if(this.totalProductsPrice==0){
