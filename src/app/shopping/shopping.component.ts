@@ -14,17 +14,7 @@ export class ShoppingComponent implements OnInit, OnDestroy  {
 
   subscribe1: Subscription;
   form: FormGroup;
-  constructor(private card: ShoppingcardService) {
-    
-   }
-
-  cart:any[]=[];      //contain all products that in card
-  async ngOnInit() {
-   (await this.card.getAllProductsInCard()).snapshotChanges().pipe(take(1)).subscribe(cart => {
-      this.cart = cart;
-
-    })     //return all product in the card in database
-
+  constructor(public card: ShoppingcardService) {
     this.form = new FormGroup({
       title: new FormControl("", Validators.required),
       last: new FormControl("", Validators.required),
@@ -39,33 +29,36 @@ export class ShoppingComponent implements OnInit, OnDestroy  {
       email: new FormControl("", Validators.required),
       cvv: new FormControl("", Validators.required),
     });
+   }
+
+  cart:any[]=[];      //contain all products that in card
+  async ngOnInit() {
+   (await this.card.getAllProductsInCard()).snapshotChanges().pipe(take(1)).subscribe(cart => {
+      this.cart = cart;
+
+    })     //return all product in the card in database
   }
 
   delete(item) {
     if (confirm("Are you sure to Delete this Product")) {
       this.card.deleteProduct(item);
     }}
-  totalProductsPrice=0 ;
+  totalProductsPrice : number=0 ;
 
    totalPrice() {
      if(this.totalProductsPrice==0){
     for (let items of this.cart as any) {
      
         let qauantaty = items.payload.val().quantity;
-        console.log(qauantaty)
-
         let price = items.payload.val().product.price as number;
-        console.log(price)
 
         let productPrice = qauantaty * price;
-        console.log(productPrice)
 
        this.totalProductsPrice+=productPrice;
-       console.log(this.totalProductsPrice)
       
     }
     
-      return this.totalProductsPrice;
+      return this.totalProductsPrice as number;
   }
   else{
     return this.totalProductsPrice=0;

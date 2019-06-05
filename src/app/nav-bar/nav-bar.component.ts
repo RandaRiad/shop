@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavBarComponent implements OnInit {
 
 
-  constructor(private service: AuthService) {
+  constructor(public service: AuthService) {
 
   }
 

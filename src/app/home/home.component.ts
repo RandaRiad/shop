@@ -51,14 +51,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
    ;
   getQauntaty(product) {// reuturn qauntati of card item
-    if (!this.cart || this.cart==null ) {
+    if (!this.cart ) {
        return 0 
       }
-
-      
       else{
+      
           let item = this.cart.items[product.key];
-            return item ? item.quantity : 0
+            return item ? item.quantity : 0  
       }
   }
   decreaseQauntaty(productQauantaty){

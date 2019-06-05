@@ -26,11 +26,10 @@
         
         <td></td>
         <td >
-            <h4>Total Price: {{totalPrice() |currency:"USD"}} </h4>   
+            <h4>Total Price: {{totalPrice() |currency:"USD"}}     </h4>
 
           </td>
-          <!-- <td> <button class="btn btn-primary" >Check Out</button>  
-          </td> -->
+          
       </tr>
     </tbody>
   </table>
@@ -44,7 +43,7 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="firstName">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" [(ngModel)]="title" formControlName="title">
+              <input type="text" class="form-control" id="title" placeholder=""  formControlName="title" >
               <div *ngIf="form.controls.title.touched &&form.controls.title.invalid" class="alert alert-danger">
                   <div *ngIf="form.controls.title.errors?.required">Please Enter First Name</div>
             
@@ -52,7 +51,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="lastName">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value=""  [(ngModel)]="last" formControlName="last">
+              <input type="text" class="form-control" id="last" placeholder="" value=""   formControlName="last" >
               <div *ngIf="form.controls.last.touched &&form.controls.last.invalid" class="alert alert-danger">
                   <div *ngIf="form.controls.last.errors?.required">Please Enter  last Name</div>
             
@@ -66,7 +65,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">@</span>
               </div>
-              <input type="text" class="form-control" id="username" placeholder="Username" [(ngModel)]="username" formControlName="username">
+              <input type="text" class="form-control" id="username" placeholder="Username"  formControlName="username" >
               
             </div>
             <div *ngIf="form.controls.username.touched &&form.controls.username.invalid" class="alert alert-danger">
@@ -77,7 +76,7 @@
 
           <div class="mb-3">
             <label for="email">Email <span class="text-muted">(Optional)</span></label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com" [(ngModel)]="email" formControlName="email">
+            <input type="email" class="form-control" id="email" placeholder="you@example.com"  formControlName="email">
             <div *ngIf="form.controls.email.touched &&form.controls.email.invalid" class="alert alert-danger">
                 <div *ngIf="form.controls.email.errors?.required">Please Enter Email</div>
           
@@ -86,7 +85,7 @@
 
           <div class="mb-3">
             <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" placeholder="1234 Main St" [(ngModel)]="address" formControlName="address">
+            <input type="text" class="form-control" id="address" placeholder="1234 Main St"  formControlName="address">
             <div *ngIf="form.controls.address.touched &&form.controls.address.invalid" class="alert alert-danger">
                 <div *ngIf="form.controls.address.errors?.required">Please Enter Your Address</div>
           
@@ -101,7 +100,7 @@
           <div class="row">
             <div class="col-md-5 mb-3">
               <label for="country">Country</label>
-              <select class="custom-select d-block w-100" id="country" [(ngModel)]="Country" formControlName="Country">
+              <select class="custom-select d-block w-100" id="country"  formControlName="Country">
                 <option value="">Choose...</option>
                 <option>United States</option>
               </select>
@@ -112,7 +111,7 @@
             </div>
             <div class="col-md-4 mb-3">
               <label for="state">State</label>
-              <select class="custom-select d-block w-100" id="state" [(ngModel)]="state" formControlName="state">
+              <select class="custom-select d-block w-100" id="state"  formControlName="state">
                 <option value="">Choose...</option>
                 <option>California</option>
               </select>
@@ -123,7 +122,7 @@
             </div>
             <div class="col-md-3 mb-3">
               <label for="zip">Zip</label>
-              <input type="text" class="form-control" id="zip" placeholder=""[(ngModel)]="zip" formControlName="zip">
+              <input type="text" class="form-control" id="zip" placeholder="" formControlName="zip">
               <div *ngIf="form.controls.zip.touched &&form.controls.zip.invalid" class="alert alert-danger">
                   <div *ngIf="form.controls.zip.errors?.required">Please Enter Your Zip</div>
             
@@ -160,7 +159,7 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="cc-name">Name on card</label>
-              <input type="text" class="form-control" id="name" placeholder=""[(ngModel)]="name" formControlName="name">
+              <input type="text" class="form-control" id="name" placeholder="" formControlName="name">
               <small class="text-muted">Full name as displayed on card</small>
               <div *ngIf="form.controls.name.touched &&form.controls.name.invalid" class="alert alert-danger">
                   <div *ngIf="form.controls.name.errors?.required">Please Enter Name on Card</div>
@@ -169,7 +168,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="cc-number">Credit card number</label>
-              <input type="text" class="form-control" id="card" placeholder="" [(ngModel)]="card" formControlName="card">
+              <input type="text" class="form-control" id="card" placeholder="" formControlName="card">
               <div *ngIf="form.controls.card.touched &&form.controls.card.invalid" class="alert alert-danger">
                   <div *ngIf="form.controls.card.errors?.required">Please Enter Credit card number</div>
             
@@ -179,7 +178,7 @@
           <div class="row">
             <div class="col-md-3 mb-3">
               <label for="cc-expiration">Expiration</label>
-              <input type="text" class="form-control" id="expiration" placeholder=""  [(ngModel)]="expiration" formControlName="expiration">
+              <input type="text" class="form-control" id="expiration" placeholder=""   formControlName="expiration">
               <div *ngIf="form.controls.expiration.touched &&form.controls.expiration.invalid" class="alert alert-danger">
                   <div *ngIf="form.controls.expiration.errors?.required">Please Enter Expiration</div>
             
@@ -187,7 +186,7 @@
             </div>
             <div class="col-md-3 mb-3">
               <label for="cc-expiration">CVV</label>
-              <input type="text" class="form-control" id="cvv" placeholder=""  [(ngModel)]="cvv" formControlName="cvv">
+              <input type="text" class="form-control" id="cvv" placeholder=""   formControlName="cvv">
               <div *ngIf="form.controls.cvv.touched &&form.controls.cvv.invalid" class="alert alert-danger">
                   <div *ngIf="form.controls.cvv.errors?.required">Please Enter CVV</div>
             

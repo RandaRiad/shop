@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProductNewComponent implements OnInit {
 
   categoryProduct$;
-  productById = {};
+  productById;
   productID: string;
 
   constructor(private categ: CategoryService,
@@ -31,10 +31,15 @@ export class ProductNewComponent implements OnInit {
 
   }
 
-  form: FormGroup;
+  form  : FormGroup ;
+  title:FormControl;
+  price:FormControl;
+  imageUrl:FormControl;
+  category:FormControl;
   ngOnInit() {
+    
     this.form = new FormGroup({
-      title: new FormControl("", Validators.required),
+    //  title: new FormControl("", Validators.required),
       price: new FormControl("", [CustomValidators.min(0), Validators.required]),
 
       imageUrl: new FormControl("", [CustomValidators.url, Validators.required]),
@@ -42,6 +47,7 @@ export class ProductNewComponent implements OnInit {
 
     });
   }
+ 
 
   saveAndUpdate(product) {
     if (this.productID) {
