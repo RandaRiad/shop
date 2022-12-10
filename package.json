@@ -28,7 +28,7 @@
     "core-js": "^2.5.4",
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "firebase": "^6.0.2",
     "jquery": "^3.4.1",
     "ng2-validation": "^4.2.0",
